@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImageOptimize Pro – Free Browser Image Compressor & Converter</title>
+    <meta name="description" content="Compress JPEG, PNG, WebP images online for free. Resize, convert format, reduce file size – 100% in your browser, no upload to servers.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
+        :root{--primary-red:#ff0033;--primary-dark:#0a0a0a;--secondary-dark:#1a1a1a;--accent-red:#ff3355;--text-light:#ffffff;--text-dim:#aaaaaa;--gradient-red:linear-gradient(135deg,#ff0033 0%,#cc0029 100%);--gradient-dark:linear-gradient(135deg,#1a1a1a 0%,#0a0a0a 100%);--success-green:#00ff64;--warning-yellow:#ffcc00}
+        body{background:var(--primary-dark);color:var(--text-light);min-height:100vh;line-height:1.6}
+        .main-header{background:var(--gradient-dark);padding:20px 0;border-bottom:3px solid var(--primary-red);position:sticky;top:0;z-index:1000;box-shadow:0 5px 20px rgba(255,0,51,.2)}
+        .header-container{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center}
+        .logo{display:flex;align-items:center;gap:15px}
+        .logo-icon{color:var(--primary-red);font-size:2.5rem;filter:drop-shadow(0 0 10px rgba(255,0,51,.5))}
+        .logo h1{font-size:2.2rem;background:linear-gradient(90deg,#fff,var(--primary-red));-webkit-background-clip:text;background-clip:text;color:transparent}
+        .hero{background:var(--gradient-dark);padding:50px 20px;text-align:center;border-bottom:2px solid rgba(255,0,51,.3)}
+        .hero h2{font-size:2.6rem;margin-bottom:15px;background:linear-gradient(90deg,var(--text-light),var(--primary-red));-webkit-background-clip:text;background-clip:text;color:transparent}
+        .hero p{font-size:1.1rem;color:var(--text-dim);max-width:800px;margin:0 auto 25px}
+        .adsterra-container{max-width:1200px;margin:25px auto;padding:0 20px;text-align:center}
+        .ad-label{background:var(--gradient-red);color:#fff;padding:6px 15px;border-radius:5px 5px 0 0;font-size:.8rem;font-weight:700}
+        .ad-banner{width:728px;height:90px;margin:0 auto;border:2px solid var(--primary-red);border-radius:0 0 8px 8px;overflow:hidden;background:#1a1a1a}
+        .container{max-width:1200px;margin:40px auto;padding:0 20px}
+        .upload-section{background:var(--secondary-dark);border-radius:15px;padding:35px;box-shadow:0 10px 30px rgba(0,0,0,.5);border:1px solid rgba(255,0,51,.2)}
+        .upload-area{border:3px dashed var(--primary-red);border-radius:12px;padding:45px 20px;text-align:center;cursor:pointer;transition:all .3s;background:rgba(255,0,51,.05)}
+        .upload-area:hover{background:rgba(255,0,51,.1);border-color:var(--accent-red);transform:translateY(-2px)}
+        .upload-icon{font-size:48px;color:var(--primary-red);margin-bottom:18px}
+        .file-info{margin-top:20px;padding:15px;background:rgba(255,255,255,.05);border-radius:8px;display:none}
+        .file-info.active{display:block;animation:fadeIn .5s}
+        .image-players{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:25px 0;display:none}
+        .image-players.active{display:grid}
+        .image-player{background:rgba(255,255,255,.05);padding:18px;border-radius:12px;border:1px solid rgba(255,0,51,.3);text-align:center}
+        .image-player h4{color:var(--primary-red);margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:8px}
+        .image-player img{max-width:100%;border-radius:8px;background:#111}
+        .controls{background:rgba(255,255,255,.05);padding:25px;border-radius:12px;border:1px solid rgba(255,0,51,.3);display:none;margin-bottom:25px}
+        .controls.active{display:block}
+        .control-group{margin-bottom:20px}
+        .control-group label{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-weight:600}
+        input[type=range]{width:100%;height:8px;-webkit-appearance:none;background:linear-gradient(90deg,#1a1a1a,var(--primary-red));border-radius:4px}
+        input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--primary-red);cursor:pointer;border:2px solid #fff;box-shadow:0 0 10px rgba(255,0,51,.5)}
+        .control-value{color:var(--primary-red);font-weight:700;min-width:50px;text-align:right}
+        .button-group{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:20px}
+        .btn{padding:13px 18px;border:none;border-radius:8px;font-size:.95rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .3s}
+        .process-btn{background:var(--gradient-red);color:#fff}
+        .process-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 5px 15px rgba(255,0,51,.4)}
+        .download-btn{background:linear-gradient(135deg,#1a1a1a,#000);color:#fff;border:1px solid var(--success-green)}
+        .download-btn:hover:not(:disabled){background:linear-gradient(135deg,var(--success-green),#00cc50);transform:translateY(-2px)}
+        .btn:disabled{background:#555;cursor:not-allowed;opacity:.6}
+        .status{padding:14px;border-radius:8px;margin:20px 0;text-align:center;font-weight:600}
+        .status.success{background:rgba(0,255,100,.1);color:var(--success-green);border:1px solid rgba(0,255,100,.3)}
+        .status.error{background:rgba(255,0,51,.1);color:var(--primary-red);border:1px solid rgba(255,0,51,.3)}
+        .status.processing{background:rgba(255,200,0,.1);color:var(--warning-yellow);border:1px solid rgba(255,200,0,.3)}
+        .main-footer{background:var(--gradient-dark);padding:35px 20px;margin-top:50px;border-top:3px solid var(--primary-red);text-align:center}
+        .copyright{color:var(--text-dim);font-size:.9rem;margin-top:15px}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+        @media (max-width:768px){.image-players{grid-template-columns:1fr}.button-group{grid-template-columns:1fr}.hero h2{font-size:2rem}.ad-banner{width:320px;height:100px}}
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-compress logo-icon"></i>
+                <div>
+                    <h1>ImageOptimize Pro</h1>
+                    <div style="color:var(--text-dim);font-size:.9rem;margin-top:5px;">Free Browser Image Compressor & Converter</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero animate__animated animate__fadeIn">
+        <h2 class="animate__animated animate__fadeInDown">Compress & Convert Images in Seconds</h2>
+        <p>Reduce file size, resize, switch to WebP/JPEG – all 100% in your browser.<br>No uploads, no servers, complete privacy.</p>
+    </section>
+
+    <!-- Replace with your real Adsterra code -->
+    <div class="adsterra-container">
+        <div class="ad-label">SPONSORED</div>
+        <div class="ad-banner">Your Adsterra 728×90 Banner Code Here</div>
+    </div>
+
+    <div class="container">
+        <main class="upload-section">
+            <div class="upload-area" id="uploadArea">
+                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                <h3>Drop Image Here or Click to Select</h3>
+                <p>JPG • PNG • WebP  •  Recommended < 20 MB</p>
+                <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" hidden>
+            </div>
+
+            <div class="file-info" id="fileInfo"></div>
+
+            <div class="image-players" id="imagePlayers">
+                <div class="image-player">
+                    <h4><i class="fas fa-image"></i> Original</h4>
+                    <img id="originalPreview" alt="Original">
+                </div>
+                <div class="image-player">
+                    <h4><i class="fas fa-compress"></i> Optimized</h4>
+                    <img id="processedPreview" alt="Optimized">
+                </div>
+            </div>
+
+            <div class="controls" id="controls">
+                <div class="control-group">
+                    <label><span><i class="fas fa-adjust"></i> Quality</span><span id="qualityValue">75%</span></label>
+                    <input type="range" id="quality" min="10" max="95" value="75" step="5">
+                </div>
+                <div class="control-group">
+                    <label><span><i class="fas fa-ruler-combined"></i> Max Width (0 = keep original)</span><span id="maxWidthValue">0 px</span></label>
+                    <input type="range" id="maxWidth" min="0" max="3840" value="0" step="10">
+                </div>
+                <div class="control-group">
+                    <label><span><i class="fas fa-file-export"></i> Output Format</span></label>
+                    <select id="outputFormat">
+                        <option value="image/jpeg">JPEG</option>
+                        <option value="image/webp" selected>WebP (smaller size)</option>
+                    </select>
+                </div>
+
+                <div class="button-group">
+                    <button id="processBtn" class="btn process-btn"><i class="fas fa-magic"></i> Optimize Now</button>
+                    <button id="downloadBtn" class="btn download-btn" disabled><i class="fas fa-download"></i> Download Result</button>
+                </div>
+            </div>
+
+            <div class="status" id="status">Ready to upload an image…</div>
+        </main>
+    </div>
+
+    <!-- Second ad slot -->
+    <div class="adsterra-container">
+        <div class="ad-label">SPONSORED</div>
+        <div class="ad-banner">Your Adsterra 728×90 or 300×250 Code Here</div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="copyright">
+            <p>© 2026 ImageOptimize Pro • MIT Licensed • Open Source on GitHub</p>
+            <p style="margin-top:10px;font-size:.8rem;color:#666;">100% client-side – your images stay on your device.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{const uploadArea=document.getElementById('uploadArea'),fileInput=document.getElementById('fileInput'),fileInfo=document.getElementById('fileInfo'),controls=document.getElementById('controls'),imagePlayers=document.getElementById('imagePlayers'),originalPrev=document.getElementById('originalPreview'),processedPrev=document.getElementById('processedPreview'),processBtn=document.getElementById('processBtn'),downloadBtn=document.getElementById('downloadBtn'),status=document.getElementById('status'),qualityInput=document.getElementById('quality'),qualityValue=document.getElementById('qualityValue'),maxWidthInput=document.getElementById('maxWidth'),maxWidthValue=document.getElementById('maxWidthValue'),outputFormat=document.getElementById('outputFormat');let originalFile=null,processedBlob=null,originalUrl='',processedUrl='';qualityInput.addEventListener('input',()=>{qualityValue.textContent=qualityInput.value+'%'});maxWidthInput.addEventListener('input',()=>{maxWidthValue.textContent=maxWidthInput.value+' px'});uploadArea.addEventListener('click',()=>fileInput.click());fileInput.addEventListener('change',e=>{e.target.files[0]&&handleFile(e.target.files[0])});uploadArea.addEventListener('dragover',e=>{e.preventDefault();uploadArea.style.borderColor='var(--accent-red)'});uploadArea.addEventListener('dragleave',()=>{uploadArea.style.borderColor='var(--primary-red)'});uploadArea.addEventListener('drop',e=>{e.preventDefault();uploadArea.style.borderColor='var(--primary-red)';e.dataTransfer.files[0]&&handleFile(e.dataTransfer.files[0])});async function handleFile(file){if(!file.type.startsWith('image/')){showStatus('Please select an image file (JPG/PNG/WebP)','error');return}originalFile=file;originalUrl=URL.createObjectURL(file);originalPrev.src=originalUrl;const img=new Image();img.onload=()=>{fileInfo.classList.add('active');fileInfo.innerHTML=`<strong>${file.name}</strong><br><small>${(file.size/1024/1024).toFixed(2)} MB • ${img.width}×${img.height}</small><button onclick="location.reload()" style="margin-left:15px;background:var(--primary-red);color:white;border:none;padding:6px 12px;border-radius:5px;cursor:pointer;"><i class="fas fa-times"></i> Remove</button>`;showStatus('Image ready! Adjust settings then click Optimize','success');controls.classList.add('active');imagePlayers.classList.add('active')};img.src=originalUrl}processBtn.addEventListener('click',async()=>{if(!originalFile)return void showStatus('Upload image first','error');showStatus('Processing...','processing');processBtn.disabled=downloadBtn.disabled=true;try{const quality=qualityInput.value/100,maxDim=Number(maxWidthInput.value),format=outputFormat.value,img=await loadImage(originalUrl),canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');let w=img.width,h=img.height;if(maxDim>0&&w>maxDim){h=Math.round(h*(maxDim/w));w=maxDim}canvas.width=w;canvas.height=h;ctx.drawImage(img,0,0,w,h);processedBlob=await new Promise(r=>canvas.toBlob(r,format,quality));processedUrl=URL.createObjectURL(processedBlob);processedPrev.src=processedUrl;const os=(originalFile.size/1024).toFixed(1)+' KB',ns=(processedBlob.size/1024).toFixed(1)+' KB',saved=((originalFile.size-processedBlob.size)/originalFile.size*100).toFixed(1);showStatus(`Success! ${os} → ${ns} (${saved}% saved)`,'success');downloadBtn.disabled=false}catch(e){console.error(e);showStatus('Processing failed – try different settings','error')}finally{processBtn.disabled=false}});downloadBtn.addEventListener('click',()=>{if(!processedBlob)return;const a=document.createElement('a');a.href=processedUrl;const ext=outputFormat.value.split('/')[1];a.download=originalFile.name.replace(/\.[^.]+$/,'')+'_optimized.'+ext;a.click();showStatus('Download started!','success')});function loadImage(src){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=rej;i.src=src})}function showStatus(msg,type){status.textContent=msg;status.className='status '+type}window.addEventListener('beforeunload',()=>{originalUrl&&URL.revokeObjectURL(originalUrl);processedUrl&&URL.revokeObjectURL(processedUrl)})});
+    </script>
+</body>
+</html>
