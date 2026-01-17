@@ -3,17 +3,7 @@
 Compress JPG, PNG, WebP images instantly in your browser.  
 Reduce file size up to 80–90% without losing noticeable quality — **no upload**, **no sign up**, **no server**, **100% private**.
 
-<div align="center">
-  <a href="https://specialithubnew-1.github.io/image-converter-and-image-compressors/">
-    <img src="https://github.com/specialithubnew-1/image-converter-and-image-compressors/issues/2#issuecomment-3762956744"
-         alt="Free Online Image Compressor - Drag and Drop Upload Area" 
-         width="800" 
-         style="border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.15); max-width:100%;">
-  </a>
-  <br><br>
-  <strong>Click the image above to try the free online image compressor now</strong>
-</div>
-
+![Screenshot_20260117-141052_Chrome](https://github.com/user-attachments/assets/289d47bf-0a9b-4d10-bb19-8cc66ab9135a)
 ### Why people keep coming back to this tool
 
 I built this because every other "free online image compressor" either:
