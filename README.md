@@ -5,7 +5,7 @@ Reduce file size up to 80–90% without losing noticeable quality — **no uploa
 
 <div align="center">
   <a href="https://specialithubnew-1.github.io/image-converter-and-image-compressors/">
-    <img src="https://github.com/specialithubnew-1/image-converter-and-image-compressors/issues/2" 
+    <img src="https://github.com/specialithubnew-1/image-converter-and-image-compressors/issues/2#issuecomment-3762956744" 
          alt="Free Online Image Compressor - Drag and Drop Upload Area" 
          width="800" 
          style="border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.15); max-width:100%;">
